@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Customize some of the MaterialDivider attributes used by the MaterialDividerItemDecoration class -->
+    <style name="Widget.ComicScroll.MaterialDivider" parent="Widget.Material3.MaterialDivider">
+        <item name="dividerInsetStart">16dp</item>
+        <item name="dividerInsetEnd">16dp</item>
+        <item name="lastItemDecorated">false</item>
+    </style>
+</resources>
