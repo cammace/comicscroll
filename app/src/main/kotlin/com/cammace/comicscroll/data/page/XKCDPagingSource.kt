@@ -44,18 +44,6 @@ class XKCDPagingSource(private val network: XKCDRemoteDataSource) : PagingSource
         // Prevent fetching comics beyond our MAXIMUM_FEED_COMICS value.
         val lastComicId = max(firstComicId - params.loadSize, latestComicId - MAXIMUM_FEED_COMICS)
 
-        // Each comic requires individual network call. iterate from our firstComicId
-        for (comicId in firstComicId downTo lastComicId) {
-            // Skip fetching latest comic, it's already added to comicDataList on page refresh.
-            if (comicId == latestComicId) continue
-
-            try {
-                comicDataList += network.getComic(comicId).asExternalModel()
-            } catch (exception: Exception) {
-                return LoadResult.Error(exception)
-            }
-        }
-
         // Load as many items as hinted by params.loadSize in descending sequential order.
         firstComicId.downTo(lastComicId)
             .take(params.loadSize)
